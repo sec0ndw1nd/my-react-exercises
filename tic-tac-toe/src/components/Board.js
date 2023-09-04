@@ -38,12 +38,13 @@ export default function Board({ currentTurn, currentPlayer, squares, onPlay }) {
     status = currentTurn < 9 ? `Current Player: ${currentPlayer}` : 'No Winner';
   }
 
-  const onClickSquare = (index) => {
+  const onClickSquare = (positionArr) => {
+    const index = 3 * positionArr[0] + positionArr[1];
     if (squares[index] || winnerIndexes) return;
 
     const nextSquares = [...squares];
     nextSquares[index] = currentPlayer;
-    onPlay(nextSquares);
+    onPlay(nextSquares, positionArr);
   };
 
   return (
@@ -63,7 +64,7 @@ export default function Board({ currentTurn, currentPlayer, squares, onPlay }) {
                       key={`square-${squareIndex}`}
                       value={squares[squareIndex]}
                       isWinnerSquare={winnerIndexes?.includes(squareIndex)}
-                      onClickSquare={() => onClickSquare(squareIndex)}
+                      onClickSquare={() => onClickSquare([i, j])}
                     />
                   );
                 })}

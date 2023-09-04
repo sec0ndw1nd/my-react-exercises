@@ -3,14 +3,16 @@ import Board from './Board';
 
 function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
+  const [positions, setPositions] = useState([null]);
   const [turn, setTurn] = useState(0);
   const [isDescending, setIsDescending] = useState(false);
   const currentSquares = history[turn];
   const currentPlayer = turn % 2 ? 'X' : 'O';
 
-  const handlePlay = (nextSquares) => {
+  const handlePlay = (nextSquares, positionArr) => {
     const nextHistory = [...history.slice(0, turn + 1), nextSquares];
     setHistory(nextHistory);
+    setPositions([...positions.slice(0, turn + 1), positionArr]);
     setTurn(nextHistory.length - 1);
   };
 
@@ -39,7 +41,11 @@ function Game() {
             return (
               <li key={`history-list-` + orderNum}>
                 <button onClick={() => handleHistory(orderNum)}>
-                  {orderNum > 0 ? `Go to turn #${orderNum}` : `Go to game start`}
+                  {orderNum > 0
+                    ? `Go to turn #${orderNum} (${positions[orderNum][0] + 1}, ${
+                        positions[orderNum][1] + 1
+                      })`
+                    : `Go to game start`}
                 </button>
               </li>
             );
