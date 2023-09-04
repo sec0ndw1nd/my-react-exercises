@@ -43,7 +43,26 @@ export default function Board({ currentPlayer, squares, onPlay }) {
   return (
     <>
       <div className="status">{status}</div>
-      <div className="board-row">
+      {Array(3)
+        .fill(null)
+        .map((_, i) => {
+          return (
+            <div key={`board-row-${i}`} className="board-row">
+              {Array(3)
+                .fill(null)
+                .map((__, j) => {
+                  return (
+                    <Square
+                      key={`square-${3 * i + j}`}
+                      value={squares[3 * i + j]}
+                      onClickSquare={() => onClickSquare(3 * i + j)}
+                    />
+                  );
+                })}
+            </div>
+          );
+        })}
+      {/* <div className="board-row">
         <Square value={squares[0]} onClickSquare={() => onClickSquare(0)} />
         <Square value={squares[1]} onClickSquare={() => onClickSquare(1)} />
         <Square value={squares[2]} onClickSquare={() => onClickSquare(2)} />
@@ -57,7 +76,7 @@ export default function Board({ currentPlayer, squares, onPlay }) {
         <Square value={squares[6]} onClickSquare={() => onClickSquare(6)} />
         <Square value={squares[7]} onClickSquare={() => onClickSquare(7)} />
         <Square value={squares[8]} onClickSquare={() => onClickSquare(8)} />
-      </div>
+      </div> */}
     </>
   );
 }

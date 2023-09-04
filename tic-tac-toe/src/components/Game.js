@@ -23,6 +23,7 @@ function Game() {
         <Board currentPlayer={currentPlayer} squares={currentSquares} onPlay={handlePlay} />
       </div>
       <div className="game-info">
+        <div className="status">{`Current Turn: ${turn}`}</div>
         <ol>
           {history.map((_, n) => (
             <li key={`history-list-` + n}>
