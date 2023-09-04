@@ -21,7 +21,12 @@ function Game() {
   return (
     <div className="game">
       <div className="game-board">
-        <Board currentPlayer={currentPlayer} squares={currentSquares} onPlay={handlePlay} />
+        <Board
+          currentTurn={turn}
+          currentPlayer={currentPlayer}
+          squares={currentSquares}
+          onPlay={handlePlay}
+        />
       </div>
       <div className="game-info">
         <div className="status">{`Current Turn: ${turn}`}</div>
