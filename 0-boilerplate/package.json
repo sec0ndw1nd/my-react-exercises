@@ -1,0 +1,45 @@
+{
+  "name": "0-boilerplate",
+  "description": "copy paste this when I want to create react project.",
+  "main": "index.js",
+  "author": "sec0ndw1nd",
+  "license": "ISC",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "cross-env BROWSER=chrome react-scripts start",
+    "build": "cross-env BROWSER=chrome react-scripts build"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.48.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react": "^7.33.2",
+    "prettier": "^3.0.3"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
