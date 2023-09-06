@@ -1,3 +1,3 @@
-# Boilerplate for my-react-exercises
+# Ugly Searchbar
 
-copy paste this when I want to create react project.
+learning react from react.dev
