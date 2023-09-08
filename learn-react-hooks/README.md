@@ -1,3 +1,3 @@
-# Boilerplate for my-react-exercises
+# Learn react hooks
 
-copy paste this when I want to create react project.
+now I'm learning react hooks.
