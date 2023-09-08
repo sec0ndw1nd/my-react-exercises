@@ -15,17 +15,27 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 7vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  column-gap: 3rem;
+
+  font-size: 1.2rem;
   color: white;
+  padding: 10px 5%;
 }
 
-.App-link {
-  color: #61dafb;
+.nav-btn {
+  padding: 10px 30px;
+}
+.nav-list {
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  column-gap: 12px;
+}
+.nav-item:hover {
+  color: yellow;
 }
 
 @keyframes App-logo-spin {
