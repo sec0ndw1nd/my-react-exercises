@@ -26,6 +26,15 @@
 }
 
 .nav-btn {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  /* padding: 3px 32px; */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
   padding: 10px 30px;
 }
 .nav-list {
