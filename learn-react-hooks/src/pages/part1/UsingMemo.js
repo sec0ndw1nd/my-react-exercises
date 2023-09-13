@@ -68,9 +68,9 @@ function Card() {
   ];
 
   // info before re-render !== info after re-render
-  const info1 = {
-    type: isAttack ? 'Attack' : 'Defence',
-  };
+  // const info = {
+  //   type: isAttack ? 'Attack' : 'Defence',
+  // };
   const info = useMemo(
     () => ({
       type: isAttack ? 'Attack' : 'Defence',
