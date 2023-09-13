@@ -21,8 +21,8 @@ import { useState } from 'react';
 const navList = [
   [
     'usingRef',
-    'usingCallback',
     'usingMemo',
+    'usingCallback',
     'usingEffect',
     'usingLayoutEffect',
     'usingContext',
@@ -40,8 +40,8 @@ const navList = [
 ];
 const routesComponents = {
   UsingRef,
-  UsingCallback,
   UsingMemo,
+  UsingCallback,
   UsingEffect,
   UsingLayoutEffect,
   UsingContext,
