@@ -43,8 +43,15 @@
   max-width: 1000px;
   column-gap: 12px;
 }
+
+.nav-item {
+  transition: color 0.5s ease;
+}
 .nav-item:hover {
-  color: yellow;
+  color: palegreen;
+}
+.active {
+  color: palegreen;
 }
 
 @keyframes App-logo-spin {

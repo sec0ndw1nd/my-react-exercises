@@ -1,5 +1,6 @@
 // import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
+// import { useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home';
 import UsingRef from './pages/part1/UsingRef';
@@ -16,7 +17,7 @@ import UsingDeferredValue from './pages/part2/UsingdeferredValue';
 import UsingInsertionEffect from './pages/part2/UsingInsertionEffect';
 import UsingSyncExternalStore from './pages/part2/UsingSyncExternalStore';
 import UsingTransition from './pages/part2/UsingTransition';
-import { useState } from 'react';
+import Header from './components/Header';
 
 const navList = [
   [
@@ -56,27 +57,10 @@ const routesComponents = {
 };
 
 function App() {
-  const [isPartOne, setIsPartOne] = useState(true);
-
   return (
     <BrowserRouter>
       <div className="App">
-        <header className="App-header">
-          <button className="nav-btn" onClick={() => setIsPartOne((prev) => !prev)}>
-            Part {isPartOne ? '1' : '2'}
-          </button>
-          <nav className="nav-list">
-            {(isPartOne ? navList[0] : navList[1]).map((nav) => (
-              <Link
-                key={`nav-${nav}`}
-                to={`/part${(isPartOne ? '1/' : '2/') + nav}`}
-                className="nav-item"
-              >
-                {`use${nav.split('using')[1]}`}
-              </Link>
-            ))}
-          </nav>
-        </header>
+        <Header navList={navList} />
         <Routes>
           <Route path="/" element={<Home />} />
           {navList.map((group, part) => {
@@ -92,7 +76,7 @@ function App() {
               );
             });
           })}
-          <Route path="*" element={<>404 page not found</>} />
+          <Route path="*" element={<div>404 page not found</div>} />
         </Routes>
       </div>
     </BrowserRouter>
