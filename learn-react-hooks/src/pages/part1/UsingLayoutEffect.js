@@ -1,5 +1,6 @@
 function UsingLayoutEffect() {
-  return <>UsingLayoutEffect</>;
+  // skip
+  return <>UsingLayoutEffect - skip</>;
 }
 
 export default UsingLayoutEffect;
