@@ -51,7 +51,7 @@ export default function Attendance() {
   return (
     <>
       <h1>출석부</h1>
-      <h3>총 학생 수: {}</h3>
+      <h3>총 학생 수: {studentsInfo.students.length}</h3>
       <input
         type="text"
         value={nameInput}
