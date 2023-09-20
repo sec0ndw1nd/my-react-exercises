@@ -1,3 +1,9 @@
+import Family from './Family';
+
 export default function ReactMemo() {
-  return <>reactmemoya</>;
+  return (
+    <>
+      <Family />
+    </>
+  );
 }
