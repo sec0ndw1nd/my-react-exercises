@@ -17,6 +17,7 @@ import UsingDeferredValue from './pages/part2/UsingdeferredValue';
 import UsingInsertionEffect from './pages/part2/UsingInsertionEffect';
 import UsingSyncExternalStore from './pages/part2/UsingSyncExternalStore';
 import UsingTransition from './pages/part2/UsingTransition';
+import ReactMemo from './pages/part1/ReactMemo';
 import Header from './components/Header';
 
 const navList = [
@@ -28,6 +29,7 @@ const navList = [
     'usingLayoutEffect',
     'usingContext',
     'usingReducer',
+    'reactMemo',
   ],
   [
     'usingImperativeHandle',
@@ -47,6 +49,7 @@ const routesComponents = {
   UsingLayoutEffect,
   UsingContext,
   UsingReducer,
+  ReactMemo,
   UsingImperativeHandle,
   UsingDebugValue,
   UsingId,

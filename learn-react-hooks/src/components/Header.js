@@ -10,15 +10,18 @@ function Header({ navList }) {
         Part {isPartOne ? '1' : '2'}
       </button>
       <nav className="nav-list">
-        {(isPartOne ? navList[0] : navList[1]).map((nav) => (
-          <NavLink
-            key={`nav-${nav}`}
-            to={`/part${(isPartOne ? '1/' : '2/') + nav}`}
-            className={({ isActive }) => (isActive ? 'active' : 'nav-item')}
-          >
-            {`use${nav.split('using')[1]}`}
-          </NavLink>
-        ))}
+        {(isPartOne ? navList[0] : navList[1]).map((menu) => {
+          const hookName = menu.split('using')[1];
+          return (
+            <NavLink
+              key={`nav-${menu}`}
+              to={`/part${(isPartOne ? '1/' : '2/') + menu}`}
+              className={({ isActive }) => (isActive ? 'active' : 'nav-item')}
+            >
+              {hookName ? `use${hookName}` : menu}
+            </NavLink>
+          );
+        })}
       </nav>
     </header>
   );
