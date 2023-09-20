@@ -1,5 +1,3 @@
-// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home';
@@ -19,6 +17,7 @@ import UsingSyncExternalStore from './pages/part2/UsingSyncExternalStore';
 import UsingTransition from './pages/part2/UsingTransition';
 import ReactMemo from './pages/part1/ReactMemo';
 import Header from './components/Header';
+import CustomHooks from './pages/part1/CustomHooks';
 
 const navList = [
   [
@@ -30,6 +29,7 @@ const navList = [
     'usingContext',
     'usingReducer',
     'reactMemo',
+    'customHooks',
   ],
   [
     'usingImperativeHandle',
@@ -50,6 +50,7 @@ const routesComponents = {
   UsingContext,
   UsingReducer,
   ReactMemo,
+  CustomHooks,
   UsingImperativeHandle,
   UsingDebugValue,
   UsingId,
