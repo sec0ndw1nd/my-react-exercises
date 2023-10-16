@@ -1,3 +1,4 @@
+import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import Card from './Card';
 import Button from './Button';
@@ -46,10 +47,33 @@ const Backdrop = styled.div`
   background: rgba(0, 0, 0, 0.75);
 `;
 
+const BackdropElement = ({ onCloseModal }) => <Backdrop onClick={onCloseModal} />;
+const ModalOverlay = ({ error, onCloseModal }) => (
+  <ModalWindow>
+    <ModalHeader>
+      <h2>{error.header}</h2>
+    </ModalHeader>
+    <ModalContent>
+      <p>{error.message}</p>
+    </ModalContent>
+    <footer>
+      <Button onClick={onCloseModal}>Okay</Button>
+    </footer>
+  </ModalWindow>
+);
+
 export default function ErrorModal({ error, onCloseModal }) {
   return (
     <>
-      <Backdrop onClick={onCloseModal} />
+      {ReactDOM.createPortal(
+        <BackdropElement onCloseModal={onCloseModal} />,
+        document.getElementById('backdrop-root'),
+      )}
+      {ReactDOM.createPortal(
+        <ModalOverlay error={error} onCloseModal={onCloseModal} />,
+        document.getElementById('overlay-root'),
+      )}
+      {/* <Backdrop onClick={onCloseModal} />
       <ModalWindow>
         <ModalHeader>
           <h2>{error.header}</h2>
@@ -60,7 +84,7 @@ export default function ErrorModal({ error, onCloseModal }) {
         <footer>
           <Button onClick={onCloseModal}>Okay</Button>
         </footer>
-      </ModalWindow>
+      </ModalWindow> */}
     </>
   );
 }
