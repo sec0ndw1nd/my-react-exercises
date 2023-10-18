@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import CartIcon from '../Cart/CartIcon';
+import { useContext, useEffect, useState } from 'react';
+import CartContext from '../../store/cart-context';
 
 const StyledButton = styled.button`
   cursor: pointer;
@@ -38,7 +40,7 @@ const StyledButton = styled.button`
     background-color: #92320c;
   }
 
-  & .bump {
+  &.bump {
     animation: bump 300ms ease-out;
   }
 
@@ -62,13 +64,29 @@ const StyledButton = styled.button`
 `;
 
 function HeaderCartButton({ onClick }) {
+  const [isButtonBump, setIsButtonBump] = useState(false);
+  const { items } = useContext(CartContext);
+
+  const numberOfCartItems = items.reduce((acc, item) => {
+    return acc + item.amount;
+  }, 0);
+
+  useEffect(() => {
+    if (items.length === 0) return;
+
+    setIsButtonBump(true);
+
+    const timer = setTimeout(() => setIsButtonBump(false), 300);
+    return () => clearTimeout(timer);
+  }, [items]);
+
   return (
-    <StyledButton onClick={onClick}>
+    <StyledButton className={`${isButtonBump && 'bump'}`} onClick={onClick}>
       <span className="icon">
         <CartIcon />
       </span>
       <span>Your Cart</span>
-      <span className="badge">3</span>
+      <span className="badge">{numberOfCartItems}</span>
     </StyledButton>
   );
 }

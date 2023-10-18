@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import MealItemForm from './MealItemForm';
+import { useContext } from 'react';
+import CartContext from '../../../store/cart-context';
 
 const StyledList = styled.li`
   display: flex;
@@ -25,7 +27,17 @@ const StyledList = styled.li`
 `;
 
 function MealItem({ id, name, description, price }) {
+  const cartCtx = useContext(CartContext);
   const formattedPrice = `$${price.toFixed(2)}`;
+
+  const addToCartHandler = (amount) => {
+    cartCtx.addItem({
+      id,
+      name,
+      amount,
+      price,
+    });
+  };
 
   return (
     <StyledList>
@@ -35,7 +47,7 @@ function MealItem({ id, name, description, price }) {
         <div className="price">{formattedPrice}</div>
       </div>
       <div>
-        <MealItemForm id={id} />
+        <MealItemForm id={id} onAddToCart={addToCartHandler} />
       </div>
     </StyledList>
   );

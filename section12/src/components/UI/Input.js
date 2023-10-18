@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import styled from 'styled-components';
 
 const StyledInputGroup = styled.div`
@@ -19,13 +20,13 @@ const StyledInputGroup = styled.div`
   }
 `;
 
-function Input({ input, label }) {
+function Input({ input, label }, ref) {
   return (
     <StyledInputGroup>
       <label htmlFor={input.id}>{label}</label>
-      <input {...input} />
+      <input ref={ref} {...input} />
     </StyledInputGroup>
   );
 }
 
-export default Input;
+export default forwardRef(Input);

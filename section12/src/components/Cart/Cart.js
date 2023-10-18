@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 import Modal from '../UI/Modal';
+import { useContext } from 'react';
+import CartContext from '../../store/cart-context';
+import CartItem from './CartItem';
 
 const StyledCart = styled.div`
   list-style: none;
@@ -41,23 +44,51 @@ const CartButton = styled.button`
 `;
 
 function Cart({ onHideCart }) {
-  const dummyCartItems = [{ id: 'c1', name: 'Sushi', amount: 2, price: 12.99 }].map((item) => (
-    <li key={item.id}>{item.name}</li>
-  ));
+  const cartCtx = useContext(CartContext);
+
+  const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
+
+  const cartItemAddHandler = (item) => {
+    cartCtx.addItem({ ...item, amount: 1 });
+  };
+  const cartItemRemoveHandler = (item) => {
+    if (item.amount > 1) {
+      cartCtx.addItem({ ...item, amount: -1 });
+    } else {
+      cartCtx.removeItem(item.id);
+    }
+  };
+
+  const cartItems = (
+    <ul>
+      {cartCtx.items.map((item) => (
+        <CartItem
+          key={item.id}
+          name={item.name}
+          amount={item.amount}
+          price={item.price}
+          onRemove={cartItemRemoveHandler.bind(null, item)}
+          onAdd={cartItemAddHandler.bind(null, item)}
+        >
+          {item.name}
+        </CartItem>
+      ))}
+    </ul>
+  );
 
   return (
     <Modal onClose={onHideCart}>
       <StyledCart>
-        {dummyCartItems}
+        {cartItems}
         <div className="total">
           <span>Total Amount</span>
-          <span>35.62</span>
+          <span>{totalAmount}</span>
         </div>
         <div className="actions">
           <CartButton $alt onClick={onHideCart}>
             Close
           </CartButton>
-          <CartButton>Order</CartButton>
+          {cartCtx.items.length > 0 && <CartButton>Order</CartButton>}
         </div>
       </StyledCart>
     </Modal>
