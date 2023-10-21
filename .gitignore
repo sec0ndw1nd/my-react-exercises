@@ -1,3 +1,4 @@
 .vscode
 # tic-tac-toe
 */node_modules
+*/src/api/config
