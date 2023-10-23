@@ -1,4 +1,4 @@
-import useInput from '../hooks/useInput';
+import useInput from '../hooks/useInput_old';
 
 function SimpleInput(props) {
   // const [enteredName, setEnteredName] = useState('');

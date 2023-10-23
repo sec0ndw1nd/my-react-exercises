@@ -1,27 +1,26 @@
 import { useState } from 'react';
 
-function useInput(validationFn) {
-  const [enteredValue, setEnteredValue] = useState('');
-  const [isTouched, setIsTouched] = useState(false);
+export default function useInput(validationFn) {
+  const [value, setValue] = useState('');
+  const [isInputTouched, setIsInputTouched] = useState(false);
 
-  const isValueValid = validationFn(enteredValue);
-  const hasError = !isValueValid && isTouched;
+  const changeValueHandler = (e) => setValue(e.target.value);
+  const blurInputHandler = (e) => setIsInputTouched(true);
 
-  const valueChangeHandler = (e) => setEnteredValue(e.target.value);
-  const inputBlurHandler = () => setIsTouched(true);
+  const isValid = validationFn(value);
+  const hasError = !isValid && isInputTouched;
+
   const reset = () => {
-    setEnteredValue('');
-    setIsTouched(false);
+    setValue('');
+    setIsInputTouched(false);
   };
 
   return {
-    value: enteredValue,
-    isValid: isValueValid,
+    value,
+    isValid,
     hasError,
-    valueChangeHandler,
-    inputBlurHandler,
+    changeValueHandler,
+    blurInputHandler,
     reset,
   };
 }
-
-export default useInput;
