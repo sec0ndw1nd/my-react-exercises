@@ -1,5 +1,11 @@
+import PageContent from '../components/PageContent';
+
 function HomePage() {
-  return <h1>h</h1>;
+  return (
+    <PageContent title="Welcome!">
+      <p>The best example project for learning react-router..</p>
+    </PageContent>
+  );
 }
 
 export default HomePage;
