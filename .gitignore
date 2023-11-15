@@ -1,3 +1,4 @@
+.DS_Store
 .vscode
 # tic-tac-toe
 node_modules
