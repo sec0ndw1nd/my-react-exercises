@@ -43,7 +43,13 @@ export async function action({ request }) {
   const resData = await response.json();
   const token = resData.token;
 
+  // save token
   localStorage.setItem('token', token);
+
+  // save token expiration
+  const expiration = new Date();
+  expiration.setHours(expiration.getHours() + 1); // after 1 hour
+  localStorage.setItem('expiration', expiration.toISOString());
 
   return redirect('/');
 }
