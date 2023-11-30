@@ -1,5 +1,11 @@
-export async function fetchEvents() {
-  const response = await fetch('http://localhost:3000/events');
+export async function fetchEvents({ signal, searchTerm }) {
+  let url = 'http://localhost:3000/events';
+  if (searchTerm) {
+    url += `?search=${searchTerm}`;
+  }
+
+  // signal(AbortSignal): fetch 도중 취소 시 필요한 객체. react-query가 알아서 제공해줌
+  const response = await fetch(url, { signal });
 
   if (!response.ok) {
     const error = new Error('An error occurred while fetching the events');
