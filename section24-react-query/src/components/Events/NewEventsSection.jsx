@@ -7,8 +7,8 @@ import { fetchEvents } from '../../util/http.js';
 
 export default function NewEventsSection() {
   const { data, isPending, isError, error } = useQuery({
-    queryFn: fetchEvents, // 데이터 패치 함수 (required)
-    queryKey: ['events'], // 캐싱 인덱스
+    queryKey: ['events', { max: 3 }], // 캐싱 인덱스
+    queryFn: ({ signal, queryKey }) => fetchEvents({ signal, ...queryKey[1] }), // 데이터 패치 함수 (required)
   });
 
   let content;

@@ -2,11 +2,11 @@ import { QueryClient } from '@tanstack/react-query';
 
 export const queryClient = new QueryClient();
 
-export async function fetchEvents({ signal, searchTerm }) {
+export async function fetchEvents({ signal, searchTerm, max }) {
   let url = 'http://localhost:3000/events';
-  if (searchTerm) {
-    url += `?search=${searchTerm}`;
-  }
+  if (searchTerm && max) url += `?search=${searchTerm}&max=${max}`;
+  else if (searchTerm) url += `?search=${searchTerm}`;
+  else if (max) url += `?max=${max}`;
 
   // signal(AbortSignal): fetch 도중 취소 시 필요한 객체. react-query가 알아서 제공해줌
   const response = await fetch(url, { signal });
@@ -88,6 +88,25 @@ export async function deleteEvent({ id }) {
 
   if (!response.ok) {
     const error = new Error('An error occurred while deleting the event');
+    error.code = response.status;
+    error.info = await response.json();
+    throw error;
+  }
+
+  return response.json();
+}
+
+export async function updateEvent({ id, event }) {
+  const response = await fetch(`http://localhost:3000/events/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify({ event }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    const error = new Error('An error occurred while updating the event');
     error.code = response.status;
     error.info = await response.json();
     throw error;
