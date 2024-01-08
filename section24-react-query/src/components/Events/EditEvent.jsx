@@ -9,7 +9,7 @@ import {
 
 import Modal from '../UI/Modal.jsx';
 import EventForm from './EventForm.jsx';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { fetchEvent, queryClient, updateEvent } from '../../util/http.js';
 // import LoadingIndicator from '../UI/LoadingIndicator.jsx';
 import ErrorBlock from '../UI/ErrorBlock.jsx';
